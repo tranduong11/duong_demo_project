@@ -5,6 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project_demo/consts/app_icons.dart';
 import 'package:project_demo/models/entity/entity_shop/object_shop.dart';
 import 'package:project_demo/models/entity/entity_shop/product_entity_1.dart';
+import 'package:project_demo/models/response/users.dart';
+import 'package:project_demo/repository/app_repossitory.dart';
 import 'package:project_demo/screens/screen_shop/screen_add.dart';
 
 class ScreenHomeShop extends StatefulWidget {
@@ -102,6 +104,18 @@ class _ScreenHomeShopState extends State<ScreenHomeShop> {
 
   int indicator = 0;
 
+  AppRepository connectMethod = AppRepository();
+  Users? users;
+
+  Future<void> initData() async {
+    final res = await connectMethod.getDataUSD(id: '2');
+    if (res != null) {
+      setState(() {
+        users = res;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -119,7 +133,7 @@ class _ScreenHomeShopState extends State<ScreenHomeShop> {
                 SvgPicture.asset(AppPath.ic_shop),
                 SizedBox(width: 5),
                 Text(
-                  'Dhaka, Banassre',
+                  '${users?.support?.text}',
                   style: TextStyle(
                       fontSize: 18, fontWeight: FontWeight.w500, color: Color(0xFF4C4F4D)),
                 ),
@@ -224,38 +238,21 @@ class _ScreenHomeShopState extends State<ScreenHomeShop> {
                     Container(
                       margin: EdgeInsets.only(left: 24.71, right: 24.71),
                       child: Row(
-                        children: [
-                          Text(
-                            'Exclusive Offer',
-                            style: TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.w600,
-                                color: Color(0xFF181725)),
-                          ),
-                          Expanded(child: SizedBox()),
-                          Text(
-                            'See all',
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: Color(0xFF53B175)),
-                          ),
-                        ],
-                      ),
+  ,
+                      )
                     ),
                     SizedBox(
                       height: 20,
                     ),
                     Container(
-                      margin: EdgeInsets.only(left: 24.71),
+                        margin: EdgeInsets.only(left: 24.71),
                       height: 248.51,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         shrinkWrap: true,
                         physics: BouncingScrollPhysics(),
                         itemCount: listItem.length,
-                        itemBuilder: (context, index) {
-                          return getItem(index, listItem[index]);
+                           return getItem(index, listItem[index]);
                         },
                       ),
                     ),
@@ -269,17 +266,19 @@ class _ScreenHomeShopState extends State<ScreenHomeShop> {
                           Text(
                             'Best Selling',
                             style: TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.w600,
-                                color: Color(0xFF181725)),
+                              fontSize: 22,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xFF181725),
+                            ),
                           ),
                           Expanded(child: SizedBox()),
                           Text(
                             'See all',
                             style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: Color(0xFF53B175)),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xFF53B175),
+                            ),
                           ),
                         ],
                       ),
@@ -318,16 +317,15 @@ class _ScreenHomeShopState extends State<ScreenHomeShop> {
                           Text(
                             'See all',
                             style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: Color(0xFF53B175)),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xFF53B175),
+                            ),
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    SizedBox(height: 20),
                     Container(
                       margin: EdgeInsets.only(left: 24.71),
                       height: 248.51,

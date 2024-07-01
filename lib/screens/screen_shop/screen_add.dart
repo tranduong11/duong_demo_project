@@ -248,7 +248,7 @@ class _ScreenAddState extends State<ScreenAdd> {
                 GestureDetector(
                   onTap: () {},
                   child: Container(
-                    width: width * 0.8,
+                    width: width * 0.9,
                     height: 65,
                     decoration: BoxDecoration(
                       color: Color(0xFF53B175),

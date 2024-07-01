@@ -40,4 +40,10 @@ class AppPath {
   static const String img_chilli_shop = 'assets/images/img_chilli_shop.png';
   static const String img_ginger_shop = 'assets/images/img_ginger_shop.png';
   static const String img_apple = 'assets/images/img_apple.png';
+  static const String img_item_1 = 'assets/images/img_item_1.svg';
+  static const String img_item_2 = 'assets/images/img_item_2.png';
+  static const String img_item_3 = 'assets/images/img_item_3.png';
+  static const String img_item_4 = 'assets/images/img_item_4.png';
+  static const String img_item_5 = 'assets/images/img_item_5.png';
+  static const String img_item_6 = 'assets/images/img_item_6.png';
 }
